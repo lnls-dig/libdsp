@@ -4,7 +4,7 @@ coeff = coeff(:);
 
 ffty = 2*coeff*length(coeff);
 ffty(1) = coeff(1);
-ffty = [ffty zeros(1,length(ffty))];
+ffty = [ffty; zeros(length(ffty),1)];
 y = ifft(ffty, 'symmetric');
 
 npts = length(y);
