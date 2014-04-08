@@ -1,24 +1,26 @@
 function [fft_amplitude, f, fft_phase] = fourierseries(data, Fs, window)
-%FFT2   Scaled FOURIERSERIES.
+%FOURIERSERIES   Fourier series of a time series.
 %
 %   [fft_amplitude, f, fft_phase] = FOURIERSERIES(data, Fs, window)
 
 %   Copyright (C) 2014 CNPEM
 %   Licensed under GNU Lesser General Public License v3.0 (LGPL)
 
-if nargin < 2
-    Fs = 1;
-end
-if nargin < 3
-    window = @rectwin;
-end
-
 if any(size(data) == 1)
     data = data(:);
 end
 
 npts = size(data,1);
-data = data.*repmat(window(npts), 1, size(data,2));
+
+if nargin < 2
+    Fs = 1;
+end
+if nargin < 3
+    window = rectwin(npts);
+end
+window = window(:);
+
+data = data.*repmat(window, 1, size(data,2));
 fft_amplitude = abs(fft(data))/npts;
 fft_phase = angle(fft(data));
 
