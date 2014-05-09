@@ -12,10 +12,10 @@ end
 
 npts = size(data,1);
 
-if nargin < 2
+if nargin < 2 || isempty(Fs)
     Fs = 1;
 end
-if nargin < 3
+if nargin < 3 || isempty(window)
     window = rectwin(npts);
 end
 window = window(:);
