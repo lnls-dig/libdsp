@@ -1,8 +1,10 @@
-function [y,t] = fourierseries2time(amp, ph, Fs, npts)
+function [y,t] = fourierseries2time(amp, ph, f, npts)
 
 if nargin < 4
     npts = 2*length(f);
 end
+
+Fs = f(end) + f(2)-f(1);
 
 Y = amp.*exp(1j*ph);
 
