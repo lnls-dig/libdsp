@@ -1,4 +1,4 @@
-function [fft_amplitude, f, fft_phase] = fourierseries(data, Fs, window)
+function [amp, f, ph] = fourierseries(data, Fs, window)
 %FOURIERSERIES   Fourier series of a time series.
 %
 %   [fft_amplitude, f, fft_phase] = FOURIERSERIES(data, Fs, window)
@@ -21,17 +21,17 @@ end
 window = window(:);
 
 data = data.*repmat(window, 1, size(data,2));
-fft_amplitude = abs(fft(data))/npts;
-fft_phase = angle(fft(data));
+amp = abs(fft(data))/npts;
+ph = angle(fft(data));
 
 half_npts = ceil(npts/2+1);
-fft_amplitude = fft_amplitude(1:half_npts, :);
-fft_phase = fft_phase(1:half_npts, :);
+amp = amp(1:half_npts, :);
+ph = ph(1:half_npts, :);
 
 if rem(npts,2) > 0
-    fft_amplitude = [fft_amplitude(1,:); 2*fft_amplitude(2:end,:)];
+    amp = [amp(1,:); 2*amp(2:end,:)];
 else
-    fft_amplitude = [fft_amplitude(1,:); 2*fft_amplitude(2:end-1,:); fft_amplitude(end,:)];
+    amp = [amp(1,:); 2*amp(2:end-1,:); amp(end,:)];
 end
 
 df = Fs/npts;
