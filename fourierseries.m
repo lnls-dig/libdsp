@@ -24,7 +24,7 @@ data = data.*repmat(window, 1, size(data,2));
 amp = abs(fft(data))/npts;
 ph = angle(fft(data));
 
-half_npts = ceil(npts/2+1);
+half_npts = ceil((npts+1)/2);
 amp = amp(1:half_npts, :);
 ph = ph(1:half_npts, :);
 
