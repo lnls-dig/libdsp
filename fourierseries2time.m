@@ -4,7 +4,7 @@ if nargin < 4
     npts = 2*length(f);
 end
 
-Fs = f(end) + f(2)-f(1);
+Fs = (f(2)-f(1))*npts;
 
 Y = amp.*exp(1j*ph);
 
