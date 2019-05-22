@@ -1,4 +1,4 @@
-function [u, t, stable_interval, nperiods] = sinsum(param)
+function [u, t, stable_interval, nperiods, f_actual] = sinsum(param)
 
 nspecs = length(param.f_spec);
 

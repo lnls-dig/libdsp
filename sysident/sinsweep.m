@@ -1,4 +1,4 @@
-function [u, t, stable_intervals, periods] = sinsweep(param)
+function [u, t, stable_intervals, periods, f_actual] = sinsweep(param)
 
 nspecs = length(param.f_spec);
 
